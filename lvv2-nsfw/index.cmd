@@ -1,0 +1,5 @@
+set LVV2_CURL_ARGS=-H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:72.0) Gecko/20100101 Firefox/72.0" -H "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8" -H "Accept-Language: en-US,zh-CN;q=0.8,en;q=0.5,zh-TW;q=0.3" -H "DNT: 1" -H "Connection: keep-alive" -H "Cookie: __cfduid=d4ab6226c22a4c7da7f23f4245247f7db1577873824; PHPSESSID=6ijh3hiuolarh3shdt92434k9i; cf_clearance=ed0c08fe9af299583cefa0963acf2acdf03a1cde-1578056449-0-220; lvv2_FXSVwm_sid=48wAMJ" -H "Upgrade-Insecure-Requests: 1" -H "TE: Trailers"
+
+for /l %%i in (1,1,80) do curl -x socks5h://127.0.0.1:19050 %LVV2_CURL_ARGS% --url https://lvv2.com/nsfw/page-%%i | egrep -o "(<a class=.title. href=.*</a>)|(/tag/[^>]+)" | sed "s/<a class=\"title\" href=\"//g"
+
+type 80.html | egrep "(<a class=\"title\" href=\")\|(/tag/[^\"]+)"

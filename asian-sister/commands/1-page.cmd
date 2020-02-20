@@ -1,0 +1,6 @@
+set CURL_HEADERS=-H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:72.0) Gecko/20100101 Firefox/72.0" -H "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8" -H "Accept-Language: en-US,zh-CN;q=0.8,en;q=0.5,zh-TW;q=0.3" -H "DNT: 1" -H "Alt-Used: cflarexljc3rw355ysrkrzwapozws6nre6xsy3n4yrj7taye3uiby3ad.onion" -H "Connection: keep-alive" -H "Cookie: __cfduid=d50c6283f91617b593e8f4b7c7e2e9bf61577707894; login=true; status=member; userName=zbutfly"%"40gmail.com; displayName="%"E0"%"A4"%"AA"%"E0"%"A5"%"8D"%"E0"%"A4"%"AF"%"E0"%"A4"%"BE"%"E0"%"A4"%"95; PHPSESSID=7f026a131fbb03c51aee6d780603e680; cf_clearance=fa2ed04afd02dbf29f873526d75322d47e864a8e-1578281781-0-250" -H "Upgrade-Insecure-Requests: 1" -H "TE: Trailers"
+set GREP_DST_ARG1="(Model / Actor</div><a href='[^']+')|(<h1>.*</h1>)|(<img class='lazyload showMiniImage'[^>]+>)"
+set GREP_DST_ARG2="(<a href='[^']+')|(<h1>.*</h1>)|(dataUrl='[^']+')|(data-src='[^']+')"
+set SED_ARG0="s/<a href='\(.*\)'/<h2>https:\/\/asiansister.com\/\1<\/h2>/g;s/'$//g;s/dataUrl='...../https:\/\/asiansister.com\//g;s/data-src='/https:\/\/asiansister.com\//g"
+echo %2 >> 2-content.list
+curl -s -x socks5h://127.0.0.1:19050 --url "%1" %CURL_HEADERS% | egrep -o %GREP_DST_ARG1% | egrep -o %GREP_DST_ARG2% | sed %SED_ARG0% >> 2-content.list
