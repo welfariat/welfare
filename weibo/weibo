@@ -1,12 +1,12 @@
 #!/bin/bash
 
-#https://www.weibo.com/1805026874/Iv6480pGj
+target=$(echo $1 | sed "s/.*weibo\.com\///g;s/\?.*//g")
 
 unset GREP_OPTIONS
 urldecode() { : "${*//+/ }"; echo -e "${_//%/\\x}"; }
 
-dsturl=https://www.weibo.com/${1/-/\/}
-dstpath=${1/\//-}
+dsturl=https://www.weibo.com/${target/-/\/}
+dstpath=${target/\//-}
 mkdir -p site/$dstpath
 
 for img in $(curl -s "$dsturl" -H "authority: www.weibo.com" -H "dnt: 1" -H "upgrade-insecure-requests: 1" \
