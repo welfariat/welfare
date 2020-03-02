@@ -8,15 +8,13 @@ urldecode() { : "${*//+/ }"; echo -e "${_//%/\\x}"; }
 dsturl=https://www.weibo.com/${target/-/\/}
 dstpath=${target/\//-}
 mkdir -p site/$dstpath
-
-for img in $(curl -s "$dsturl" -H "authority: www.weibo.com" -H "dnt: 1" -H "upgrade-insecure-requests: 1" \
-  -H "user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/82.0.4055.2 Safari/537.36" \
-  -H "accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9" \
-  -H "sec-fetch-site: none" -H "sec-fetch-mode: navigate" -H "sec-fetch-user: ?1" -H "sec-fetch-dest: document" -H "accept-language: en,zh-CN;q=0.9,zh;q=0.8,en-US;q=0.7,zh-TW;q=0.6" \
-  -H "cookie: SINAGLOBAL=9746436240919.238.1560838368359; SCF=AuzoXtkUmvE0V-3-HaRNxOM2CYyOAfoyFXKw0AeGaUgGXrH1PrFGy2_lT6EMKQMjh8R1LqEGz7hyLBenmYDlPBE.; SUHB=00x5XwElPqMhPM; ALF=1610245579; SUB=_2AkMpF-dXf8NxqwJRmP4Tz2zmb4t2yA7EieKfSxaMJRMxHRl-yT92qhMctRB6ApfJuIJ1ZNxTCbcAuOMdjygEU9jRRKen; SUBP=0033WrSXqPxfM72-Ws9jqgMF55529P9D9WF-9JHe5w31YwWoMaFTwgTD; ULV=1582110291507:6:2:2:942289062340.7621.1582110290603:1582000228416" \
- | egrep -o "clear_picSrc=[^&]+" | egrep -o "%2F%2Fwx[^,]+")
+cookie="SINAGLOBAL=7312468128204.368.1578709958035; ULV=1578709958037:1:1:1:7312468128204.368.1578709958035:; SCF=AgcsDwIO3vtTjsJ3FEuUOfxOMkTU0XUDbPqOSIrsHw8iNyE-nfxtBwK6YbjNIZKM65EZZBrGY5ITPVE5ieOj3VE.; SUHB=0M2V45YQaEp3IC; ALF=1614668545; un=zbutfly@163.com; wvr=6; YF-V5-G0=b588ba2d01e18f0a91ee89335e0afaeb; SSOLoginState=1582895514; YF-Page-G0=8a1a69dc6ba21f1cd10b039dff0f4381|1582967626|1582967626; TC-V5-G0=eb26629f4af10d42f0485dca5a8e5e20; TC-Page-G0=7a922a70806a77294c00d51d22d0a6b7|1582968179|1582968179; Ugrow-G0=d52660735d1ea4ed313e0beb68c05fc5; SUB=_2A25zWN_eDeRhGeRH7FMT9C7NyziIHXVQL7YWrDV8PUNbmtAfLUXDkW9NTdEu_4SOCBNbSown8eUtDVd4Cv7WkqGC; SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9W5z2BX.EI_1BkvmfUkqMc.F5JpX5KMhUgL.Foz4S02ESh5pehB2dJLoIEXLxK-LB-BL1KBLxK.L1-zL1h5LxKqLB-BLB.zLxK-LB-BL1KBLxK.L1-zL1h5t"
+for img in $(curl -s "$dsturl" --compressed -H "DNT: 1" -H "TE: Trailers" -H "Connection: keep-alive" -H "Upgrade-Insecure-Requests: 1"\
+	-H "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8" -H "Accept-Language: zh-CN,en-US;q=0.8,en;q=0.5,zh-TW;q=0.3" \
+	-H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:74.0) Gecko/20100101 Firefox/74.0" \
+	-H "Cookie: $cookie" | egrep -o "clear_picSrc=[^&]+" | egrep -o "%2F%2Fwx[^,]+")
 do
-  echo https:$(urldecode "$img") | sed "s/mw690/large/g" >> $dstpath.list
+	echo https:$(urldecode "$img") | sed "s/mw690/large/g" >> $dstpath.list
 done
 cat $dstpath.list
 . weibo-c.sh $dstpath

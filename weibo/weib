@@ -1,0 +1,12 @@
+#!/bin/bash
+unset GREP_OPTIONS
+dstpath=$(echo $1 | sed "s/.*weibo\.cn\/detail\///g;s/\?.*//g")
+urldecode() { : "${*//+/ }"; echo -e "${_//%/\\x}"; }
+
+uid=$(curl -s "https://m.weibo.cn/detail/$dstpath" | egrep -o "\"profile_url\": \"https://[^?\"]+" | egrep -o "[0-9]+$")
+mkdir -p site/$uid-$dstpath
+for img in $(curl -s "https://m.weibo.cn/detail/$dstpath" | egrep -o "\"url\": \"https://wx[1-4]\.sinaimg\.cn\/large\/[^\"]+\"" | sed "s/\"url\": \"\([^\"]\+\)\"/\\1/g")
+do
+	echo $uid/$img
+	wget -c -b --tries=inf -P site/$uid-$dstpath -o "logs/$dstpath-$(echo $img | sed "s/.*\///g;s/\.[^\.]*$//g").log" "$img"
+done
