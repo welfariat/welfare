@@ -24,6 +24,6 @@ do
 		url=$(cut -d',' -f3 <<< $img)
 		echo ===== fetching $img === $alb = $idx = $url 
 		mkdir -p site/$alb
-		curl -C - -o site/$alb/$idx.jpg "https://asiansister.com/$url"
+		curl -C - --retry 100 --retry-delay 1 -o site/$alb/$idx.jpg "https://asiansister.com/$url"
 	done
 done

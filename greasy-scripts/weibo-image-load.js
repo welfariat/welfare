@@ -34,7 +34,7 @@
 			//suda-uatrack="key=feed_headnick&value=pubuser_nick:4477343520831412
 			//suda-uatrack="key=feed_headnick&value=transuser_nick:4477320427113626"
 			var match = /key=[^&]+&value=[^:]+:(\d+)/.exec(info.children[0].getAttribute('suda-uatrack'));
-			if (!match) break;
+			if (!match) continue;
 			btn.href = "https://m.weibo.cn/detail/" + match[1];
 			btn.target = "_blank";
 			btn.style["margin-left"] = "3em";
@@ -89,7 +89,7 @@
 			setTimeout(topbtn, 5);
 		} else {
 			ele = ele[0];
-			ele.href = "javascript:void(0)";
+			ele.removeAttribute("href");
 			ele.title = "点击启用加载原图按钮";
 			ele.onclick = create_expand;
 			ele.style.filter = "invert(100%)"
