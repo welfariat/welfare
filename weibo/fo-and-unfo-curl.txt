@@ -1,0 +1,72 @@
+curl 'https://www.weibo.com/aj/f/followed?ajwvr=6&__rnd=1583761263703' 
+	-H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:74.0) Gecko/20100101 Firefox/74.0' 
+	-H 'Accept: */*' 
+	-H 'Accept-Language: zh-CN,en-US;q=0.8,en;q=0.5,zh-TW;q=0.3' 
+	--compressed 
+	-H 'Content-Type: application/x-www-form-urlencoded' 
+	-H 'X-Requested-With: XMLHttpRequest' 
+	-H 'Origin: https://www.weibo.com' 
+	-H 'DNT: 1' 
+	-H 'Connection: keep-alive' 
+	-H 'Referer: https://www.weibo.com/dbutfly/home?wvr=5&is_new=1' 
+	-H 'Cookie: SINAGLOBAL=7312468128204.368.1578709958035; ULV=1578709958037:1:1:1:7312468128204.368.1578709958035:; SCF=AgcsDwIO3vtTjsJ3FEuUOfxOMkTU0XUDbPqOSIrsHw8irwy_wcOYDpC2DfmbX4ZjOpnlBlwoCiGb8p6elTqpTTk.; SUHB=0C1SBXtQgnLhWn; ALF=1615276001; wb_timefeed_2971240104=1; wvr=6; SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9W5z2BX.EI_1BkvmfUkqMc.F5JpX5KMhUgL.Foz4S02ESh5pehB2dJLoIEXLxK-LB-BL1KBLxK.L1-zL1h5LxKqLB-BLB.zLxK-LB-BL1KBLxK.L1-zL1h5t; wb_view_log_2971240104=1920*10802; YF-V5-G0=2583080cfb7221db1341f7a137b6762e; SSOLoginState=1582895514; YF-Page-G0=44cd1a20bfa82176cbec01176361dd13|1583761255|1583761255; TC-V5-G0=595b7637c272b28fccec3e9d529f251a; TC-Page-G0=153ff31dae1cf71cc65e7e399bfce283|1583760811|1583760796; Ugrow-G0=d52660735d1ea4ed313e0beb68c05fc5; SUB=_2A25zYYQ2DeRhGeRH7FMT9C7NyziIHXVQFvL-rDV8PUNbmtAfLXLikW9NTdEu_4uj5oWxIbriFcLa4-awFSrx7t0e; wb_view_log=1920*10802' 
+	-H 'TE: Trailers' 
+	--data '
+uid=1795703702&
+objectid=&
+f=1&
+extra=&
+refer_sort=card&
+refer_flag=followed&
+refer_flag=0000020001_&
+location=v6_content_home&
+oid=2971240104&
+wforce=1&
+nogroup=1&
+fnick=%E6%A1%9C%E6%A1%83%E5%96%B5&
+refer_lflag=0000015010_&
+refer_from=profile_card&
+template=8&
+special_focus=1&
+isrecommend=1&
+is_special=0&
+redirect_url=%252Fp%252F1005052971240104%252Fmyfollow%253Fgid%253D201208271102485098%2523place&
+_t=0
+'
+
+
+
+curl 'https://www.weibo.com/aj/f/unfollow?ajwvr=6' 
+	-H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:74.0) Gecko/20100101 Firefox/74.0' 
+	-H 'Accept: */*' 
+	-H 'Accept-Language: zh-CN,en-US;q=0.8,en;q=0.5,zh-TW;q=0.3' 
+	--compressed 
+	-H 'Content-Type: application/x-www-form-urlencoded' 
+	-H 'X-Requested-With: XMLHttpRequest' 
+	-H 'Origin: https://www.weibo.com' 
+	-H 'DNT: 1' 
+	-H 'Connection: keep-alive' 
+	-H 'Referer: https://www.weibo.com/dbutfly/home?wvr=5&is_new=1' 
+	-H 'Cookie: SINAGLOBAL=7312468128204.368.1578709958035; ULV=1578709958037:1:1:1:7312468128204.368.1578709958035:; SCF=AgcsDwIO3vtTjsJ3FEuUOfxOMkTU0XUDbPqOSIrsHw8irwy_wcOYDpC2DfmbX4ZjOpnlBlwoCiGb8p6elTqpTTk.; SUHB=0C1SBXtQgnLhWn; ALF=1615276001; wb_timefeed_2971240104=1; wvr=6; SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9W5z2BX.EI_1BkvmfUkqMc.F5JpX5KMhUgL.Foz4S02ESh5pehB2dJLoIEXLxK-LB-BL1KBLxK.L1-zL1h5LxKqLB-BLB.zLxK-LB-BL1KBLxK.L1-zL1h5t; wb_view_log_2971240104=1920*10802; YF-V5-G0=2583080cfb7221db1341f7a137b6762e; SSOLoginState=1582895514; YF-Page-G0=44cd1a20bfa82176cbec01176361dd13|1583761255|1583761255; TC-V5-G0=595b7637c272b28fccec3e9d529f251a; TC-Page-G0=153ff31dae1cf71cc65e7e399bfce283|1583760811|1583760796; Ugrow-G0=d52660735d1ea4ed313e0beb68c05fc5; SUB=_2A25zYYQ2DeRhGeRH7FMT9C7NyziIHXVQFvL-rDV8PUNbmtAfLXLikW9NTdEu_4uj5oWxIbriFcLa4-awFSrx7t0e; wb_view_log=1920*10802' 
+	-H 'TE: Trailers' 
+	--data $'
+uid=1795703702&
+objectid=&
+f=1&
+extra=&
+refer_sort=&
+refer_flag=followed&
+refer_flag=0000020001_&
+location=v6_content_home&
+oid=2971240104&
+wforce=1&
+nogroup=1&
+fnick=\u685c\u6843\u55b5&
+refer_lflag=0000015010_&
+refer_from=profile_card&
+template=8&
+special_focus=1&
+isrecommend=1&
+is_special=0&
+redirect_url=%2Fp%2F1005052971240104%2Fmyfollow%3Fgid%3D201208271102485098%23place
+'

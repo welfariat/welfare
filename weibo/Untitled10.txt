@@ -1,0 +1,37 @@
+1. find user id and container id
+
+~~~bash
+curl https://m.weibo.cn/u/1795703702
+~~~
+
+2. find first list
+
+~~~bash
+curl 'https://m.weibo.cn/api/container/getIndex?type=uid&value=1795703702&containerid=1076031795703702'
+~~~bash
+
+3. find next by since_id
+
+~~~json
+data.cardlistInfo.since_id: 4476279816533426
+~~~
+
+until no since_id
+
+4. filter all card_type=9
+
+5. filter: original, without:
+
+~~~json
+data.cards.[].mblog.retweeted_status is undefined
+~~~
+
+6. find post mid=4480588062666825, find post
+
+~~~bash
+curl https://m.weibo.cn/status/4480588062666825
+~~~
+
+$render_data[0].status.bid=IuBoclOri
+$render_data[0].status.pics[].large.url
+wget url into $uid/$bid
