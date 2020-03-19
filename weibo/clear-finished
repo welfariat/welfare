@@ -1,0 +1,1 @@
+grep -l FINISH site/*/*.log | xargs rm -f
