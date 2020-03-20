@@ -8,11 +8,11 @@ if [[ $url == *"/detail/"* ]] || [[ $url == *"/status/"* ]] || [ ${#1} -eq 16 ]
 then
 	tid=$(echo $url | sed "s/.*weibo\.cn\/\(detail\|status\)\///g")
 	urldecode() { : "${*//+/ }"; echo -e "${_//%/\\x}"; }
-	uid=$(curl -s "https://m.weibo.cn/detail/$tid" | egrep -o "\"profile_url\": \"https://[^?\"]+" | egrep -o "[0-9]+$")
+	uid=$(curl "https://m.weibo.cn/detail/$tid" | egrep -o "\"profile_url\": \"https://[^?\"]+" | egrep -o "[0-9]+$")
 	echo fech phone: uid: $uid, tid: $tid
 	mkdir -p site/$uid/$tid
 
-	for img in $(curl -s "https://m.weibo.cn/detail/$tid" | egrep -o "\"url\": \"https://wx[1-4]\.sinaimg\.cn\/large\/[^\"]+\"" | sed "s/\"url\": \"\([^\"]\+\)\"/\\1/g")
+	for img in $(curl "https://m.weibo.cn/detail/$tid" | egrep -o "\"url\": \"https://wx[1-4]\.sinaimg\.cn\/large\/[^\"]+\"" | sed "s/\"url\": \"\([^\"]\+\)\"/\\1/g")
 	do
 		echo $uid/$tid: $img
 		wget -c -b --tries=inf -P site/$uid/$tid -o site/$uid/$tid-$(echo $img | sed "s/.*\///g;s/\.[^\.]*$//g").log "$img"
@@ -23,7 +23,7 @@ else
 	echo fech web page: $target
 	mkdir -p site/$target
 
-	imgs=$(curl -s "https://www.weibo.com/$target" --compressed -H "DNT: 1" -H "TE: Trailers" -H "Connection: keep-alive" -H "Upgrade-Insecure-Requests: 1" \
+	imgs=$(curl "https://www.weibo.com/$target" --compressed -H "DNT: 1" -H "TE: Trailers" -H "Connection: keep-alive" -H "Upgrade-Insecure-Requests: 1" \
 		-H "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8" -H "Accept-Language: zh-CN,en-US;q=0.8,en;q=0.5,zh-TW;q=0.3" \
 		-H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:74.0) Gecko/20100101 Firefox/74.0" \
 		-H "Cookie: $(cat cookie-sina.txt)" | egrep -o "clear_picSrc=[^&]+" | egrep -o "%2F%2Fw.[^,]+")
